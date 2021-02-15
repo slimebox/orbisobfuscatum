@@ -1,16 +1,15 @@
 package org.femtobit.orbisobfuscatum;
 
+import org.femtobit.orbisobfuscatum.frame.OMFrame;
+
 import javax.swing.*;
 
 public class Main {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            JFrame frame = new JFrame("Orbis Obfuscatum");
+            OMFrame frame = new OMFrame("Orbis Obfuscatum");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-            JLabel label = new JLabel("sup beeb");
-            frame.getContentPane().add(label);
             frame.pack();
             frame.setVisible(true);
         });
