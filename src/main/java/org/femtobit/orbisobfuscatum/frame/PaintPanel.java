@@ -1,21 +1,18 @@
 package org.femtobit.orbisobfuscatum.frame;
 
+import org.femtobit.orbisobfuscatum.Main;
 import org.femtobit.orbisobfuscatum.shape.OMShape;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.util.Stack;
 
-public class PaintPanel extends JPanel implements MouseListener, MouseMotionListener {
+public class PaintPanel extends JPanel implements MouseListener, MouseMotionListener, KeyListener {
 
     BufferedImage canvas;
     Graphics2D graphics;
-
-    private OMFrame frame;
 
     private final int DOT = 0;
     private final int LINE = 1;
@@ -39,26 +36,22 @@ public class PaintPanel extends JPanel implements MouseListener, MouseMotionList
         shapes = new Stack<OMShape>();
     }
 
-    public PaintPanel(int z, OMFrame frame) {
-        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-        panelHeight = dimension.height - 150;
-        panelWidth = dimension.width - 150;
+    public PaintPanel(int z) {
+
+        panelWidth = 1775;
+        panelHeight = 600;
 
         setSize(panelWidth, panelHeight);
+        System.out.println("New height of " + panelWidth + " x " + panelHeight + " set");
         setPreferredSize(new Dimension(panelWidth, panelHeight));
         setLayout(null);
-
         setDoubleBuffered(true);
-        setLocation(10, 10);
         setBackground(Color.white);
         setFocusable(true);
         requestFocus();
 
         addMouseListener(this);
         addMouseMotionListener(this);
-
-        this.frame = frame;
-        System.out.println("New height of " + panelWidth + " x " + panelHeight + " set");
 
         shapes = new Stack<OMShape>();
     }
@@ -96,6 +89,9 @@ public class PaintPanel extends JPanel implements MouseListener, MouseMotionList
 
             }
         }
+    }
+
+    public void refresh() {
     }
 
     public void clear() {
@@ -164,6 +160,22 @@ public class PaintPanel extends JPanel implements MouseListener, MouseMotionList
 
     @Override
     public void mouseExited(MouseEvent e) {
+
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        if(e.getKeyCode() == KeyEvent.VK_SPACE)
+            Main.CannyImage();
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
 
     }
 }
