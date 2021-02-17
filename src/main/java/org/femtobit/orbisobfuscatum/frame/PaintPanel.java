@@ -125,7 +125,7 @@ public class PaintPanel extends JPanel implements MouseListener, MouseMotionList
 
         dragged = true;
 
-        shapes.push(new OMShape(x1, y1, LINE));
+        shapes.push(new OMShape(x1, y1, x2, y2, LINE));
         repaint();
         x2 = x1;
         y2 = y1;
